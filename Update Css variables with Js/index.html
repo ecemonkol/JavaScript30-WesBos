@@ -1,62 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Variables</title>
+  <meta charset="UTF-8">
+  <title>Scoped CSS Variables and JS</title>
+  <link rel="icon" href="https://fav.farm/✅" />
 </head>
 <body>
-    <div class="control">
-        <label for="spacing">Spacing:</label>
-        <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px"></input>
-        <label for="blur">Blur:</label>
-        <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px"></input>
-        <label for="base">Base Color:</label>
-        <input id="base" type="color" name="base" value="#ff5c600"></input>
-    </div>
-    <img src="https://images.unsplash.com/photo-1552553302-9211bf7f7053?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80">
+  <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
 
-    <style>
-        :root {
-            --base: #ffc600;
-            --spacing: 10px;
-            --blur: 10px;      
-        }
+  <div class="controls">
+    <label for="spacing">Spacing:</label>
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
 
-        img {
-            width: 400px;
-            padding: var(--spacing);
-            background: var(--base);
-            filter: blur(var(--blur));
+    <label for="blur">Blur:</label>
+    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
 
-        }
+    <label for="base">Base Color</label>
+    <input id="base" type="color" name="base" value="#ffc600">
+  </div>
 
-        .hl {
-            color: var(--base);
-        }
+  <img src="https://images.unsplash.com/photo-1556559214-9d7db920d2eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80">
 
-        body {
-            text-align: center;
-            background: darkkhaki;
-            color: whitesmoke;
-            font-family: Arial, Helvetica, sans-serif;
-            font-family: 100;
-            font-size: 40px;
-        }
+  <style>
+    :root {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
 
-    </style>
-    <script>
-        const inputs = document.querySelectorAll(".controls input");
-        
-        function handleUpdate() {
-            console.log(this.value);
-        }
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+      width: 400px;
+    }
 
-        inputs.forEach( input => input.addEventListener("change", handleUpdate));
-        inputs.forEach( input => input.addEventListener("mousemove", handleUpdate));
+    .hl {
+      color: var(--base);
+    }
 
-    </script>
+    body {
+      text-align: center;
+      background: #9bc28f;
+      color: white;
+      font-family: 'helvetica neue', sans-serif;
+      font-weight: 100;
+      font-size: 50px;
+    }
+
+    .controls {
+      margin-bottom: 50px;
+    }
+
+    input {
+      width: 100px;
+    }
+
+    label {
+        font-size: medium;
+        font-weight: 500;
+    }
+
+    input[type=range]::-moz-range-track {
+      width: 100%;
+      height: 8.4px;
+      cursor: pointer;
+      box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+      background: #3071a9;
+      border-radius: 1.3px;
+      border: 0.2px solid #010101;
+    }
+
+    
+
+
+
+  </style>
+
+  <script>
+    const inputs = document.querySelectorAll('.controls input');
+
+    function handleUpdate() {
+      const suffix = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+  </script>
+
+
 </body>
-
 </html>
