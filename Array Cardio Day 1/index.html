@@ -37,8 +37,6 @@
       'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
     ];
     
-    // Array.prototype.filter()
-    // 1. Filter the list of inventors for those who were born in the 1500's
 
     const fifteen = inventors.filter(inventor => (inventor.year >=1500 && inventor.year <1600 ))
 
@@ -53,6 +51,21 @@
     const namesDisplay = document.querySelector(".lololo") 
 
     namesDisplay.textContent = fullNames
+
+    const birthYear = inventors.map(inventor => (inventor.year));
+    
+    console.log(birthYear);
+    
+    const youngToOld = birthYear.sort((a,b) => a-b);
+
+    const oldToYoungs = youngToOld.reverse()
+
+    console.log(oldToYoungs);
+    
+    document.querySelector(".lololo").innerHTML = oldToYoungs.map(oldToYoung => oldToYoung * 2)
+    
+     
+   
 
   </script>
 </body>
