@@ -74,6 +74,17 @@
 
     document.querySelector(".lololo").innerHTML = totalYears
 
+    const oldest = inventors.sort(function(a, b) {
+        const lastGuy = a.passed - b.passed;
+        const nextGuy = a.passed - b.passed;
+        return lastGuy > nextGuy ? 1 : -1
+        
+    })
+
+    console.table(oldest);
+
+       
+
   </script>
 </body>
 </html>
