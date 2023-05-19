@@ -62,10 +62,17 @@
 
     console.log(oldToYoungs);
     
-    document.querySelector(".lololo").innerHTML = oldToYoungs.map(oldToYoung => oldToYoung * 2)
+    const newArray = document.querySelector(".lololo")
     
-     
-   
+    newArray.innerHTML = oldToYoungs
+
+    const totalYears = inventors.reduce((total, inventor) => {
+      return total + (inventor.passed - inventor.year);
+      
+    }, 0);
+    console.log(totalYears);
+
+    document.querySelector(".lololo").innerHTML = totalYears
 
   </script>
 </body>
